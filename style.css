@@ -12,7 +12,6 @@ body {
     display: none;
 }
 .login {
-    border: 1px solid red;
     padding: 1rem;
     position: absolute;
     width: 90%;
