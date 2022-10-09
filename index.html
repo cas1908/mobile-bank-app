@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mobile Banking</title>
+</head>
+<body>
+    <div class="large-screen">TRY A SMALLER DEVICE</div>
+    <div class="login">
+        <form action="" >
+            <input type="text" placeholder="Username" name="username" id="username" >
+            <input type="tel" placeholder="Pin" name="password" id="password">
+            <button >Sign in</button>
+        </form>
+    </div>
+    <div class="container">
+        <header>
+            <h1>Welcome back, <span id="user">CAS</span></h1>
+            <!-- App logo goes here -->
+            <div class="dated-balance">
+                <h3>Current balance</h3>
+                <p id="today's-date"></p>
+                <h2 id="cal-balance"></h2>
+            </div>
+
+            
+        </header>
+        <main>
+            <div class="transaction-summarry">
+
+            </div>
+            <div id="credit-debit-summary">
+
+            </div>
+            <div class="make-transactions">
+                <section id="transfer">
+                    <h2>Transfer money</h2>
+                    <form>
+                       <label for="account">
+                        <input type="text" name="username" required>
+                        Transfer to
+                       </label> 
+                       <label for="amount">
+                        <input type="tel" name="username" required>
+                        Amount
+                       </label>
+                       <button>submit</button>
+                    </form>
+                </section>
+                <section id="loan">
+                    <h2>Request loan</h2>
+                    <form>
+                        <label for="Amount">
+                            <input type="tel" name="amount" required>
+                            Amount
+                        </label>
+                        <button>submit</button>
+                    </form>
+                </section>
+                <section id="close-account">
+                    <h2>Close account</h2>
+                    <form>
+                       <label for="account-username">
+                        <input type="text" name="username" required>
+                        Transfer to
+                       </label> 
+                       <label for="amount">
+                        <input type="tel" name="username" required>
+                        Amount
+                       </label>
+                       <button>submit</button>
+                    </form>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
