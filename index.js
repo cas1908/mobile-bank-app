@@ -1,6 +1,7 @@
 // alert('hello world')
 const container = document.querySelector('.container')
 const login = document.querySelector('.login')
+const user = document.getElementById('user')
 window.addEventListener('load', ()=> {
     // alert('hello there')
     let screenSize = window.innerWidth
@@ -35,6 +36,11 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
         console.log(username.value)
         if ((username.value == 'cas' && password.value == '1908') || (username.value == 'danny' && password.value == '2009')) {
             loggedOnSuccess()
+            if (username.value == 'cas') {
+                user.innerText = 'Cas'
+            } else {
+                user.innerText = 'Danny'
+            }
         } else {
             alert('user not found, enter valid detaiils')
         }
