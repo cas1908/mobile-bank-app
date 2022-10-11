@@ -79,6 +79,7 @@ const loggedOnSuccess = () => {
     container.style.display = 'block'
     login.style.display = 'none'
     body.removeChild(preLoaderText)
+    body.style.display = "block"
 
     let date
     setInterval(()=>{
