@@ -2,6 +2,7 @@
 const container = document.querySelector('.container')
 const login = document.querySelector('.login')
 const user = document.getElementById('user')
+const availableBalance = document.getElementById('cal-balance').innerText = '$15,000'
 window.addEventListener('load', ()=> {
     // alert('hello there')
     let screenSize = window.innerWidth
@@ -11,7 +12,7 @@ window.addEventListener('load', ()=> {
     login.style.display = 'block'
 })
 
-
+// LOGIN VALIDATION
 const submitBtn = document.querySelector('.login form')
 
 submitBtn.addEventListener('submit', (e, username,password)=> {
@@ -52,8 +53,18 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
 
 })
 
+// AFTER ENTERING SUCCESSFULL DETAILS
 const loggedOnSuccess = () => {
     container.style.display = 'block'
     login.style.display = 'none'
 
+    let date
+    setInterval(()=>{
+        date = new Date()
+        const dateDsplay = document.getElementById("today's-date").innerText = date.toUTCString().slice(0,-4)
+
+    }, 1000)
+    
+   
 }
+// loggedOnSuccess()

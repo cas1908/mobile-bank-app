@@ -26,15 +26,15 @@ body {
     gap: 5px;
 }
 .login form input {
-    padding: 0.9rem;
+    padding: 0.9rem 1.5rem;
     width: 100%;
     margin: 0 auto 3%;
     border: 1px solid cyan;
     border-radius: 45px;
 }
-.login form input::placeholder {
+/* .login form input::placeholder {
     padding-left: 5%;
-}
+} */
 .login form button {
     margin: 2% auto 0;
     width: 50%;
@@ -48,6 +48,19 @@ body {
     font-weight: 600;
     background-color: blue;
     border:1px solid blue;
+}
+.bal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5%;
+}
+.dated-balance h3 {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2% 3%;
 }
 section {
     border: none;
