@@ -1,16 +1,19 @@
-// alert('hello world')
 const body = document.querySelector('body')
 const container = document.querySelector('.container')
 const login = document.querySelector('.login')
 const user = document.getElementById('user')
 const availableBalance = document.getElementById('cal-balance').innerText = '$15,000'
 window.addEventListener('load', ()=> {
-    // alert('hello there')
     let screenSize = window.innerWidth
     console.log(screenSize)
+    if(screenSize >= 960 ) {
+        login.style.display = "none" 
+    } else {
+        login.style.display =  "block"
+    }
     container.style.display = 'none '
     
-    login.style.display = 'block'
+    
 })
 
 // LOGIN VALIDATION
@@ -32,7 +35,6 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
             password.style.border = "2px solid red"
         } else password.style.border = "2px solid green"
 
-        // alert('enter details to continue')
     } else {
         username.value = username.value.toLowerCase()
         console.log(username.value)
@@ -48,9 +50,6 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
             alert('user not found, enter valid detaiils')
         }
 
-        // alert('lo?gged in succesfully')
-        
-        
     }
 
 })
@@ -73,6 +72,12 @@ const preLoader = (loading)=>{
 
 }
 
+let date
+let hour
+let min
+
+let currentDate
+const dateDisplay = document.getElementById("today's-date")
 // AFTER ENTERING SUCCESSFULL DETAILS
 const loggedOnSuccess = () => {
     loading = false
@@ -81,13 +86,33 @@ const loggedOnSuccess = () => {
     body.removeChild(preLoaderText)
     body.style.display = "block"
 
-    let date
+    
     setInterval(()=>{
         date = new Date()
-        const dateDsplay = document.getElementById("today's-date").innerText = date.toUTCString().slice(0,-7)
+        hour = date.getHours()
+        min = date.getMinutes()
+        currentDate = date.getDate()
+        console.log(date)
+        dateDisplay.innerText = date.toString().slice(0,-40)
 
     }, 1000)
     
    
 }
 // loggedOnSuccess()
+let transactionSummary = document.querySelector('.transaction-summary')
+let transaction = document.getElementById('transfer')
+transaction.addEventListener('submit', (e)=> {
+    e.preventDefault()
+    let li = document.createElement('li')
+    let account = document.getElementById('account')
+    let amount = document.getElementById('amount')
+    console.log(date)
+    let transactionTimeStamp = dateDisplay.innerText.slice(0,10) + dateDisplay.innerText.slice(15,)
+    console.log(transactionTimeStamp)
+    li.innerText = transactionTimeStamp + " " + " " + account.value + " " + "-" + "$" + amount.value
+    console.log(li)
+    transactionSummary.prepend(li)
+    account.value = ""
+    amount.value = ""
+})

@@ -38,9 +38,9 @@ body {
 .login form button {
     margin: 2% auto 0;
     width: 50%;
-    background-color: blueviolet;
+    background-color: #3c3cfe;
     color: white;
-    border: 1px solid blueviolet;
+    border: 1px solid #3c3cfe;
     border-radius: 45px;
     padding: 1rem 0;
 }
@@ -61,6 +61,22 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 2% 3%;
+}
+.transaction-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+}
+.transaction-summary li {
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    border-radius: 20px;
+    padding: 0.5rem;
+    border: 1px solid #fff;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px #3c3cfe30;
 }
 section {
     border: none;
@@ -110,7 +126,7 @@ section:nth-child(2) form label input {
 }
 section:nth-child(3) {
     backdrop-filter: blur(30px);
-    background: linear-gradient( to top left,#ff0300 , #c52927);
+    background: linear-gradient( to bottom right,#ff0300, #c52927);
 }
 section:nth-child(3) form label input {
     background-color: #871110c4;
