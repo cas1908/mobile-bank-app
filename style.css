@@ -89,7 +89,7 @@ section form label input, button {
 }
 section:nth-child(1) {
     backdrop-filter: blur(10px);
-    background: linear-gradient(to top left, rgb(0, 0, 255) 40%,rgba(0, 0, 128, 0.504));
+    background: linear-gradient(to top left, #3c3cfe 40%,rgba(0, 0, 128, 0.504))
 }
 section:nth-child(1) form label input {
     background-color: skyblue;
@@ -98,7 +98,7 @@ section:nth-child(1) form label input {
 }
 section:nth-child(2) {
     backdrop-filter: blur(50px);
-    background: linear-gradient(to top left,rgba(0, 128, 0, 0.504) 40%, lime);
+    background: linear-gradient(to top left,#5cbd55 40%, lime);
 }
 section:nth-child(2) form  label{
     width: 50%;
@@ -110,11 +110,11 @@ section:nth-child(2) form label input {
 }
 section:nth-child(3) {
     backdrop-filter: blur(30px);
-    background: linear-gradient( to top left,rgba(255, 0, 0, 0.854), rgba(255, 0, 0, 0.4));
+    background: linear-gradient( to top left,#ff0300 , #c52927);
 }
 section:nth-child(3) form label input {
-    background-color: rgba(255, 0, 255, 0.198);
-    border: 1px solid rgba(255, 0, 255, 0.198);
+    background-color: #871110c4;
+    border: 1px solid #871110c4;
     backdrop-filter: blur(50px);
     margin-bottom: 10%;
 }
