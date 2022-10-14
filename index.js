@@ -53,6 +53,8 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
     }
 
 })
+
+// PRELOADER TEXT
 const preLoaderText = document.createElement('h1')
 const preLoader = (loading)=>{
 
@@ -75,10 +77,15 @@ const preLoader = (loading)=>{
 let date
 let hour
 let min
-
+const clockDisplay = document.createElement('i')
+clockDisplay.innerHTML = '<i class="fa-regular fa-clock"></i>'
 let currentDate
 const dateDisplay = document.getElementById("today's-date")
 // AFTER ENTERING SUCCESSFULL DETAILS
+
+let transactionSummary = document.querySelector('.transaction-summary')
+let noTransactionText = document.createElement('p')
+noTransactionText.innerText = "No Transaction Made Yet"
 const loggedOnSuccess = () => {
     loading = false
     container.style.display = 'block'
@@ -92,16 +99,22 @@ const loggedOnSuccess = () => {
         hour = date.getHours()
         min = date.getMinutes()
         currentDate = date.getDate()
-        console.log(date)
         dateDisplay.innerText = date.toString().slice(0,-40)
+        dateDisplay.appendChild(clockDisplay)
 
     }, 1000)
     
-   
+    setTimeout( ()=>{
+        location.reload()
+        },360000)
+        console.log(transactionSummary.childNodes.length)
+        transactionSummary.children.length ? console.log('true') : transactionSummary.appendChild(noTransactionText)
+//    console.log(transactionSummary)
 }
 // loggedOnSuccess()
-let transactionSummary = document.querySelector('.transaction-summary')
-let transaction = document.getElementById('transfer')
+
+// MAKING TRANSFERS
+const transaction = document.getElementById('transfer')
 transaction.addEventListener('submit', (e)=> {
     e.preventDefault()
     let li = document.createElement('li')
@@ -110,9 +123,46 @@ transaction.addEventListener('submit', (e)=> {
     console.log(date)
     let transactionTimeStamp = dateDisplay.innerText.slice(0,10) + dateDisplay.innerText.slice(15,)
     console.log(transactionTimeStamp)
-    li.innerText = transactionTimeStamp + " " + " " + account.value + " " + "-" + "$" + amount.value
-    console.log(li)
-    transactionSummary.prepend(li)
+    let accountValueElement = document.createElement('span')
+    accountValueElement.innerText = `${account.value}`
+    let amountValueElement = document.createElement('span')
+    amountValueElement.setAttribute('class','amount')
+    amountValueElement.innerText = '-$' + `${amount.value}`
+    amountValueElement.style.backgroundColor = '#c52927'
+    amountValueElement.style.color = 'white'
+    li.innerText = transactionTimeStamp
+    li.appendChild(accountValueElement)
+    li.appendChild(amountValueElement)
+    if (transactionSummary.childNodes.length >= 1) {
+        transactionSummary.prepend(li)
+        transactionSummary.removeChild(noTransactionText)
+    }
+    console.log(transactionSummary.childNodes.length)
+    // transactionSummary.prepend(li)
+    console.log(transactionSummary.length)
     account.value = ""
     amount.value = ""
+
+    
+})
+
+const loan = document.querySelector('.loan')
+loan.addEventListener('submit', (e)=> {
+    e.preventDefault()
+    let li = document.createElement('li')
+    let amount = document.getElementById('loan')
+    let transactionTimeStamp = dateDisplay.innerText.slice(0,10) + dateDisplay.innerText.slice(15,)
+    let amountValueElement = document.createElement('span')
+    amountValueElement.setAttribute('class','amount loan')
+    amountValueElement.innerText = '+$' + `${amount.value}`
+    amountValueElement.style.backgroundColor = '#5cbd55'
+    amountValueElement.style.color = 'white'
+    li.innerText = transactionTimeStamp
+    li.appendChild(amountValueElement)
+    if (transactionSummary.childNodes.length >= 1) {
+        transactionSummary.prepend(li)
+        transactionSummary.removeChild(noTransactionText)
+    }
+    amount.value = ""
+    
 })

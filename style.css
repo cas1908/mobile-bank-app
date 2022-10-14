@@ -53,30 +53,57 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 5%;
+    padding: 0 2%;
+    margin: 3% 0;
 }
-.dated-balance h3 {
+.bal h2 {
+    font-size: 1.6rem;
+}
+.bal h3 {
+    padding: 2% 0;
+    font-size: 1.2rem;
+}
+.bal p {
     display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2% 3%;
+    flex-wrap: wrap;
+    gap: 2px;
 }
 .transaction-summary {
     display: flex;
     flex-direction: column;
+    text-align: center;
     gap: 10px;
+    border-radius: 5px;
     padding: 1rem;
+    min-height: 100px;
+    border: 1px solid rgba(210, 215, 221, 0.304);
+    background-color: rgba(210, 215, 221, 0.304);
 }
 .transaction-summary li {
     list-style-type: none;
     display: flex;
+    justify-content: space-between;
     width: 100%;
     border-radius: 20px;
     padding: 1rem;
     border: 1px solid #fff;
     background-color: #fff;
-    box-shadow: 2px 2px 5px #3c3cfe30;
+    
+    box-shadow: 2px 2px 5px #3c3cfe0d, -2px -2px 5px #3c3cfe0d;
+}
+.transaction-summary li span {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.transaction-summary li span:nth-child(2) {  
+    border: 1px solid #c52927;
+}
+.transaction-summary li span.loan{
+    border: 1px solid #5cbd55;
+}
+.transaction-summary li span.amount {
+    border-radius: 15px;
+    padding: 0.1rem 0.5rem;
 }
 section {
     border: none;
@@ -114,7 +141,7 @@ section:nth-child(1) form label input {
 }
 section:nth-child(2) {
     backdrop-filter: blur(50px);
-    background: linear-gradient(to top left,#5cbd55 40%, lime);
+    background: linear-gradient(to top left,#5cbd55 40%, rgba(0, 255, 0, 0.687));
 }
 section:nth-child(2) form  label{
     width: 50%;
@@ -141,7 +168,7 @@ button {
 }
 
 
-@media screen and (min-width: 4em) and (max-width:60em) {
+@media screen and (min-width: 40em) and (max-width:60em) {
     body {
         min-height: 100vh;
         /* border: 10px solid red; */
@@ -155,6 +182,25 @@ button {
     } */
     .large-screen {
         display: none;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    .bal h2 {
+        font-size: 2.2rem;
+    }
+    .bal h3 {
+        font-size: 1.5rem;
+    }
+    main {
+        display: flex;
+        justify-content: space-around;
+    }
+    .transaction-summary {
+        width: 50%;
+    }
+    .make-transactions {
+        width: 45%;
     }
     
 }
