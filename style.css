@@ -6,6 +6,10 @@
 body {
     background-color: rgba(245, 245, 220, 0.426);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+}
+.container {
+    background-color: white;
     padding: 1rem;
 }
 .large-screen {
@@ -55,6 +59,7 @@ body {
     justify-content: space-between;
     padding: 0 2%;
     margin: 3% 0;
+
 }
 .bal h2 {
     font-size: 1.6rem;
@@ -70,12 +75,15 @@ body {
 }
 .transaction-summary {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     text-align: center;
-    gap: 10px;
+    gap: 5px;
     border-radius: 5px;
-    padding: 1rem;
-    min-height: 100px;
+    padding: 0.5rem;
+    min-height: 200px;
+    height: 200px;
+    overflow-y: scroll;
     border: 1px solid rgba(210, 215, 221, 0.304);
     background-color: rgba(210, 215, 221, 0.304);
 }
@@ -85,10 +93,10 @@ body {
     justify-content: space-between;
     width: 100%;
     border-radius: 20px;
-    padding: 1rem;
+    padding: 0.5rem;
     border: 1px solid #fff;
     background-color: #fff;
-    
+    font-size: 0.9rem;
     box-shadow: 2px 2px 5px #3c3cfe0d, -2px -2px 5px #3c3cfe0d;
 }
 .transaction-summary li span {

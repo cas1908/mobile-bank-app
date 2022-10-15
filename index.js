@@ -57,7 +57,7 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
 // PRELOADER TEXT
 const preLoaderText = document.createElement('h1')
 const preLoader = (loading)=>{
-
+    preLoaderText.style.width = "90%"
     preLoaderText.innerText = "Loading Your Banking Experience....."
     setTimeout(()=>{
         loggedOnSuccess()
@@ -67,6 +67,7 @@ const preLoader = (loading)=>{
         body.appendChild(preLoaderText)
         body.style.display = "flex"
         body.style.alignItems = "center"
+        body.style.justifyContent = "center"
 
        
 
@@ -85,7 +86,7 @@ const dateDisplay = document.getElementById("today's-date")
 
 let transactionSummary = document.querySelector('.transaction-summary')
 let noTransactionText = document.createElement('p')
-noTransactionText.innerText = "No Transaction Made Yet"
+noTransactionText.innerText = "No Transaction Made Yet \n Make transactions to see last 5 transactions"
 const loggedOnSuccess = () => {
     loading = false
     container.style.display = 'block'
@@ -134,15 +135,20 @@ transaction.addEventListener('submit', (e)=> {
     li.appendChild(accountValueElement)
     li.appendChild(amountValueElement)
     if (transactionSummary.childNodes.length >= 1) {
+        transactionSummary.style.justifyContent = "flex-start"
         transactionSummary.prepend(li)
-        transactionSummary.removeChild(noTransactionText)
-    }
+        noTransactionText.style.display = "none"
+
+        } 
+        if (transactionSummary.childNodes.length >=6) {
+            transactionSummary.lastChild.remove()
+        }
     console.log(transactionSummary.childNodes.length)
     // transactionSummary.prepend(li)
     console.log(transactionSummary.length)
     account.value = ""
     amount.value = ""
-
+    
     
 })
 
@@ -160,8 +166,12 @@ loan.addEventListener('submit', (e)=> {
     li.innerText = transactionTimeStamp
     li.appendChild(amountValueElement)
     if (transactionSummary.childNodes.length >= 1) {
+        transactionSummary.style.justifyContent = "flex-start"
         transactionSummary.prepend(li)
-        transactionSummary.removeChild(noTransactionText)
+        noTransactionText.style.display = "none"
+    } 
+    if (transactionSummary.childNodes.length >= 6) {
+        transactionSummary.lastChild.remove()
     }
     amount.value = ""
     
