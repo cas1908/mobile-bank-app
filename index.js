@@ -2,7 +2,10 @@ const body = document.querySelector('body')
 const container = document.querySelector('.container')
 const login = document.querySelector('.login')
 const user = document.getElementById('user')
-const availableBalance = document.getElementById('cal-balance').innerText = '$15,000'
+let currentBalance = 15000
+
+let availableBalance = document.getElementById('cal-balance')
+availableBalance.innerText = '$' + currentBalance
 window.addEventListener('load', ()=> {
     let screenSize = window.innerWidth
     console.log(screenSize)
@@ -11,9 +14,7 @@ window.addEventListener('load', ()=> {
     } else {
         login.style.display =  "block"
     }
-    container.style.display = 'none '
-    
-    
+    container.style.display = 'none '    
 })
 
 // LOGIN VALIDATION
@@ -49,7 +50,6 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
         } else {
             alert('user not found, enter valid detaiils')
         }
-
     }
 
 })
@@ -62,17 +62,11 @@ const preLoader = (loading)=>{
     setTimeout(()=>{
         loggedOnSuccess()
     }, 5000)
-
-        
+      
         body.appendChild(preLoaderText)
         body.style.display = "flex"
         body.style.alignItems = "center"
         body.style.justifyContent = "center"
-
-       
-
-
-
 }
 
 let date
@@ -93,8 +87,7 @@ const loggedOnSuccess = () => {
     login.style.display = 'none'
     body.removeChild(preLoaderText)
     body.style.display = "block"
-
-    
+   
     setInterval(()=>{
         date = new Date()
         hour = date.getHours()
@@ -131,6 +124,7 @@ transaction.addEventListener('submit', (e)=> {
     amountValueElement.innerText = '-$' + `${amount.value}`
     amountValueElement.style.backgroundColor = '#c52927'
     amountValueElement.style.color = 'white'
+    calculateAvailableBalance(amount.value,"")
     li.innerText = transactionTimeStamp
     li.appendChild(accountValueElement)
     li.appendChild(amountValueElement)
@@ -139,17 +133,15 @@ transaction.addEventListener('submit', (e)=> {
         transactionSummary.prepend(li)
         noTransactionText.style.display = "none"
 
-        } 
-        if (transactionSummary.childNodes.length >=6) {
+    } 
+     if (transactionSummary.childNodes.length >=6) {
             transactionSummary.lastChild.remove()
         }
     console.log(transactionSummary.childNodes.length)
     // transactionSummary.prepend(li)
-    console.log(transactionSummary.length)
     account.value = ""
-    amount.value = ""
-    
-    
+    amount.value = "" 
+
 })
 
 const loan = document.querySelector('.loan')
@@ -163,6 +155,7 @@ loan.addEventListener('submit', (e)=> {
     amountValueElement.innerText = '+$' + `${amount.value}`
     amountValueElement.style.backgroundColor = '#5cbd55'
     amountValueElement.style.color = 'white'
+    calculateAvailableBalance("",amount.value)
     li.innerText = transactionTimeStamp
     li.appendChild(amountValueElement)
     if (transactionSummary.childNodes.length >= 1) {
@@ -176,3 +169,26 @@ loan.addEventListener('submit', (e)=> {
     amount.value = ""
     
 })
+
+// CALCULATE BALANCE
+
+const calculateAvailableBalance = (value,value2)=> {
+    console.log(value)
+    console.log(value2)
+    if (value) {
+        console.log(typeof value)
+        currentBalance = currentBalance - value
+        console.log(currentBalance)
+        availableBalance.innerText = '$' + currentBalance
+        console.log(availableBalance)
+    }
+
+
+    if (value2){
+        console.log(typeof value2)
+        currentBalance = currentBalance + Number(value2)
+        console.log(currentBalance)
+        availableBalance.innerText = '$' + currentBalance
+        console.log(availableBalance)
+    }
+}
