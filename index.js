@@ -3,7 +3,6 @@ const container = document.querySelector('.container')
 const login = document.querySelector('.login')
 const user = document.getElementById('user')
 let currentBalance = 15000
-
 let availableBalance = document.getElementById('cal-balance')
 availableBalance.innerText = '$' + currentBalance
 window.addEventListener('load', ()=> {
@@ -19,9 +18,7 @@ window.addEventListener('load', ()=> {
 
 // LOGIN VALIDATION
 const submitBtn = document.querySelector('.login form')
-
-submitBtn.addEventListener('submit', (e, username,password)=> {
-    
+submitBtn.addEventListener('submit', (e, username,password)=> {   
     e.preventDefault()
     console.log(e)
     username = document.getElementById('username')
@@ -35,7 +32,6 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
         if (password.value == ""){
             password.style.border = "2px solid red"
         } else password.style.border = "2px solid green"
-
     } else {
         username.value = username.value.toLowerCase()
         console.log(username.value)
@@ -51,7 +47,6 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
             alert('user not found, enter valid detaiils')
         }
     }
-
 })
 
 // PRELOADER TEXT
@@ -62,11 +57,18 @@ const preLoader = (loading)=>{
     setTimeout(()=>{
         loggedOnSuccess()
     }, 5000)
-      
         body.appendChild(preLoaderText)
         body.style.display = "flex"
         body.style.alignItems = "center"
         body.style.justifyContent = "center"
+        setInterval(()=>{
+            date = new Date()
+            hour = date.getHours()
+            min = date.getMinutes()
+            currentDate = date.getDate()
+            dateDisplay.innerText = date.toString().slice(0,-40)
+            dateDisplay.appendChild(clockDisplay)
+        }, 1000)
 }
 
 let date
@@ -76,8 +78,8 @@ const clockDisplay = document.createElement('i')
 clockDisplay.innerHTML = '<i class="fa-regular fa-clock"></i>'
 let currentDate
 const dateDisplay = document.getElementById("today's-date")
-// AFTER ENTERING SUCCESSFULL DETAILS
 
+// AFTER ENTERING SUCCESSFULL DETAILS
 let transactionSummary = document.querySelector('.transaction-summary')
 let noTransactionText = document.createElement('p')
 noTransactionText.innerText = "No Transaction Made Yet \n Make transactions to see last 5 transactions"
@@ -87,25 +89,12 @@ const loggedOnSuccess = () => {
     login.style.display = 'none'
     body.removeChild(preLoaderText)
     body.style.display = "block"
-   
-    setInterval(()=>{
-        date = new Date()
-        hour = date.getHours()
-        min = date.getMinutes()
-        currentDate = date.getDate()
-        dateDisplay.innerText = date.toString().slice(0,-40)
-        dateDisplay.appendChild(clockDisplay)
-
-    }, 1000)
-    
     setTimeout( ()=>{
         location.reload()
         },360000)
         console.log(transactionSummary.childNodes.length)
         transactionSummary.children.length ? console.log('true') : transactionSummary.appendChild(noTransactionText)
-//    console.log(transactionSummary)
 }
-// loggedOnSuccess()
 
 // MAKING TRANSFERS
 const transaction = document.getElementById('transfer')
@@ -132,18 +121,16 @@ transaction.addEventListener('submit', (e)=> {
         transactionSummary.style.justifyContent = "flex-start"
         transactionSummary.prepend(li)
         noTransactionText.style.display = "none"
-
     } 
      if (transactionSummary.childNodes.length >=6) {
             transactionSummary.lastChild.remove()
         }
     console.log(transactionSummary.childNodes.length)
-    // transactionSummary.prepend(li)
     account.value = ""
     amount.value = "" 
-
 })
 
+// RECEIVING LOANS
 const loan = document.querySelector('.loan')
 loan.addEventListener('submit', (e)=> {
     e.preventDefault()
@@ -167,11 +154,9 @@ loan.addEventListener('submit', (e)=> {
         transactionSummary.lastChild.remove()
     }
     amount.value = ""
-    
 })
 
 // CALCULATE BALANCE
-
 const calculateAvailableBalance = (value,value2)=> {
     console.log(value)
     console.log(value2)
@@ -182,8 +167,6 @@ const calculateAvailableBalance = (value,value2)=> {
         availableBalance.innerText = '$' + currentBalance
         console.log(availableBalance)
     }
-
-
     if (value2){
         console.log(typeof value2)
         currentBalance = currentBalance + Number(value2)

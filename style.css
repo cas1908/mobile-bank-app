@@ -39,9 +39,6 @@ body {
     border: 1px solid cyan;
     border-radius: 45px;
 }
-/* .login form input::placeholder {
-    padding-left: 5%;
-} */
 .login form button {
     margin: 2% auto 0;
     width: 50%;
@@ -65,7 +62,6 @@ h1 #user {
     justify-content: space-between;
     padding: 0 2%;
     margin: 3% 0;
-
 }
 .bal h2 {
     font-size: 1.8rem;
@@ -131,7 +127,6 @@ section {
 section form {
     margin: 5% auto;
     display: flex;
-    /* border: 1px solid blue; */
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
@@ -189,15 +184,9 @@ button {
 @media screen and (min-width: 40em) and (max-width:60em) {
     body {
         min-height: 100vh;
-        /* border: 10px solid red; */
         display: flex;
-        /* place-items: center; */
         position: relative;
     }
-    /* .container,.login {
-        display: none;
-        margin: 0 auto;
-    } */
     .large-screen {
         display: none;
     }
@@ -222,7 +211,6 @@ button {
     .make-transactions {
         width: 45%;
     }
-    
 }
 
 @media screen and (min-width: 60em) {
@@ -230,7 +218,6 @@ button {
         min-height: 100vh;
         border: 10px solid red;
         display: flex;
-        /* place-items: center; */
         position: relative;
     }
     .container,.login {
@@ -252,18 +239,14 @@ button {
     @keyframes warning {
         0% {
             color: black;
-            /* translate: 0 50px; */
-            /* scale: 1.2; */
              top: 40%;
             left: 30%; 
         }
         25% {
-            /* scale: 1; */
             top: 60%;
             left: 30%;
         }
         50% {
-            /* scale: 1.2; */
             top: 40%;
            left: 30%; 
         }
@@ -272,8 +255,6 @@ button {
             left: 30%;
         }
         100% {
-            /* translate: 0 -50px; */
-            /* scale: 1; */
             top: 40%;
             left: 30%;
         }
