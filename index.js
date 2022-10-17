@@ -31,10 +31,10 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
         } else password.style.border = "2px solid green"
     } else {
         username.value = username.value.toLowerCase()
-        if ((username.value == 'cash' && password.value == '1908') || (username.value == 'danny' && password.value == '2009')) {
+        if ((username.value == 'cas' && password.value == '1908') || (username.value == 'danny' && password.value == '2009')) {
             login.style.display = 'none'
             preLoader(true)
-            if (username.value == 'cash') {
+            if (username.value == 'cas') {
                 user.innerText = 'Cas'
             } else {
                 user.innerText = 'Danny'
