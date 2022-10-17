@@ -7,7 +7,6 @@ let availableBalance = document.getElementById('cal-balance')
 availableBalance.innerText = '$' + currentBalance
 window.addEventListener('load', ()=> {
     let screenSize = window.innerWidth
-    console.log(screenSize)
     if(screenSize >= 960 ) {
         login.style.display = "none" 
     } else {
@@ -20,11 +19,8 @@ window.addEventListener('load', ()=> {
 const submitBtn = document.querySelector('.login form')
 submitBtn.addEventListener('submit', (e, username,password)=> {   
     e.preventDefault()
-    console.log(e)
     username = document.getElementById('username')
     password = document.getElementById('password')
-    console.log(username.value)
-    console.log(password.value) 
     if ( (username.value && password.value) === '') {
         if (username.value == "") {
             username.style.border = "2px solid red"
@@ -34,11 +30,10 @@ submitBtn.addEventListener('submit', (e, username,password)=> {
         } else password.style.border = "2px solid green"
     } else {
         username.value = username.value.toLowerCase()
-        console.log(username.value)
-        if ((username.value == 'cas' && password.value == '1908') || (username.value == 'danny' && password.value == '2009')) {
+        if ((username.value == 'cash' && password.value == '1908') || (username.value == 'danny' && password.value == '2009')) {
             login.style.display = 'none'
             preLoader(true)
-            if (username.value == 'cas') {
+            if (username.value == 'cash') {
                 user.innerText = 'Cas'
             } else {
                 user.innerText = 'Danny'
@@ -92,7 +87,6 @@ const loggedOnSuccess = () => {
     setTimeout( ()=>{
         location.reload()
         },360000)
-        console.log(transactionSummary.childNodes.length)
         transactionSummary.children.length ? console.log('true') : transactionSummary.appendChild(noTransactionText)
 }
 
@@ -103,14 +97,12 @@ transaction.addEventListener('submit', (e)=> {
     let li = document.createElement('li')
     let account = document.getElementById('account')
     let amount = document.getElementById('amount')
-    console.log(date)
     let transactionTimeStamp = dateDisplay.innerText.slice(0,10) + dateDisplay.innerText.slice(15,)
-    console.log(transactionTimeStamp)
     let accountValueElement = document.createElement('span')
     accountValueElement.innerText = `${account.value}`
     let amountValueElement = document.createElement('span')
     amountValueElement.setAttribute('class','amount')
-    amountValueElement.innerText = '-$' + `${amount.value}`
+    amountValueElement.innerText = `-$${amount.value}`
     amountValueElement.style.backgroundColor = '#c52927'
     amountValueElement.style.color = 'white'
     calculateAvailableBalance(amount.value,"")
@@ -125,7 +117,6 @@ transaction.addEventListener('submit', (e)=> {
      if (transactionSummary.childNodes.length >=6) {
             transactionSummary.lastChild.remove()
         }
-    console.log(transactionSummary.childNodes.length)
     account.value = ""
     amount.value = "" 
 })
@@ -134,6 +125,8 @@ transaction.addEventListener('submit', (e)=> {
 const loan = document.querySelector('.loan')
 loan.addEventListener('submit', (e)=> {
     e.preventDefault()
+    let loanVendor = document.createElement('span')
+    loanVendor.innerText = "CashMe"
     let li = document.createElement('li')
     let amount = document.getElementById('loan')
     let transactionTimeStamp = dateDisplay.innerText.slice(0,10) + dateDisplay.innerText.slice(15,)
@@ -144,6 +137,7 @@ loan.addEventListener('submit', (e)=> {
     amountValueElement.style.color = 'white'
     calculateAvailableBalance("",amount.value)
     li.innerText = transactionTimeStamp
+    li.appendChild(loanVendor)
     li.appendChild(amountValueElement)
     if (transactionSummary.childNodes.length >= 1) {
         transactionSummary.style.justifyContent = "flex-start"
@@ -158,20 +152,27 @@ loan.addEventListener('submit', (e)=> {
 
 // CALCULATE BALANCE
 const calculateAvailableBalance = (value,value2)=> {
-    console.log(value)
-    console.log(value2)
+    creditDebitTotal(value,value2)
     if (value) {
-        console.log(typeof value)
         currentBalance = currentBalance - value
-        console.log(currentBalance)
         availableBalance.innerText = '$' + currentBalance
-        console.log(availableBalance)
     }
     if (value2){
-        console.log(typeof value2)
         currentBalance = currentBalance + Number(value2)
-        console.log(currentBalance)
         availableBalance.innerText = '$' + currentBalance
-        console.log(availableBalance)
     }
 }
+
+//  CREDIT-DEBIT TOTAL
+let calculateCredit = 0
+let calculateDebit = 0
+const creditDebitSummary = document.getElementById('credit-debit-summary')
+const creditSpan = document.getElementById('credit')
+const debitSpan = document.getElementById('debit')
+ const creditDebitTotal = (debit,credit)=> {
+   calculateCredit = calculateCredit + Number(credit)
+   calculateDebit = calculateDebit + Number(debit)
+   creditSpan.innerText = `$${calculateCredit}`
+   debitSpan.innerText = `$${calculateDebit}`
+ 
+ }    
