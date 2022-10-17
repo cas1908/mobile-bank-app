@@ -5,8 +5,9 @@ const user = document.getElementById('user')
 let currentBalance = 15000
 let availableBalance = document.getElementById('cal-balance')
 availableBalance.innerText = '$' + currentBalance
+let screenSize = window.innerWidth
 window.addEventListener('load', ()=> {
-    let screenSize = window.innerWidth
+
     if(screenSize >= 960 ) {
         login.style.display = "none" 
     } else {
@@ -78,7 +79,11 @@ const dateDisplay = document.getElementById("today's-date")
 let transactionSummary = document.querySelector('.transaction-summary')
 let noTransactionText = document.createElement('p')
 noTransactionText.innerText = "No Transaction Made Yet \n Make transactions to see last 5 transactions"
+
 const loggedOnSuccess = () => {
+    if (screenSize >= 640) {
+        transactionSummary.style.height = '500px'
+    } else transactionSummary.style.height = '200px'
     loading = false
     container.style.display = 'block'
     login.style.display = 'none'
@@ -114,9 +119,9 @@ transaction.addEventListener('submit', (e)=> {
         transactionSummary.prepend(li)
         noTransactionText.style.display = "none"
     } 
-     if (transactionSummary.childNodes.length >=6) {
+     if (transactionSummary.childNodes.length >=6 && screenSize < 640) {
             transactionSummary.lastChild.remove()
-        }
+        } else if (transactionSummary.childNodes.length >= 11) transactionSummary.lastChild.remove()
     account.value = ""
     amount.value = "" 
 })
@@ -144,9 +149,9 @@ loan.addEventListener('submit', (e)=> {
         transactionSummary.prepend(li)
         noTransactionText.style.display = "none"
     } 
-    if (transactionSummary.childNodes.length >= 6) {
+    if (transactionSummary.childNodes.length >= 6 && screenSize < 640) {
         transactionSummary.lastChild.remove()
-    }
+    } else if (transactionSummary.childNodes.length >= 11) transactionSummary.lastChild.remove()
     amount.value = ""
 })
 

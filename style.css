@@ -215,16 +215,24 @@ button {
         font-size: 1.5rem;
     }
     main {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 20px;
         justify-content: space-around;
         align-items: center;
     }
     .transaction-summary {
-        width: 50%;
+        width: 100%;
+        grid-column: 1;
         height: 200px;
     }
     .make-transactions {
-        width: 45%;
+        width: 100%;
+        grid-column: 2;
+        grid-row: 1;
+    }
+    #credit-debit-summary {
+        grid-row: 2;
     }
     
 }
